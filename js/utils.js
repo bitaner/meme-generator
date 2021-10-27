@@ -1,6 +1,6 @@
 'use strict'
 
-function makeId(length = 6) {
+function makeId(length = 6) { // didnt use
     var txt = ''
     var possible = 'QWETRYUIOPASDFHJKLZXCVBNM1234567890qwerytuiopasdfghjklzxcvbnm!@#$%^&*'
 

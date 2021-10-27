@@ -1,11 +1,11 @@
 'use strict'
-
+var gElText = document.querySelector('.text-input').value
 
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [{
-        txt: 'I never eat Falafel',
+        txt: gElText.value,
         size: 20,
         align: 'left',
         color: 'red'
@@ -13,10 +13,22 @@ var gMeme = {
 }
 
 
-var gImgs = [
-    { id: 101, url: 'img/1.jpg', keywords: ['politics', 'angry', 'man', 'crazy', 'trump'] },
-    { id: 102, url: 'img/2.jpg', keywords: ['animals', 'cute', 'dog'] },
-    { id: 103, url: 'img/3.jpg', keywords: ['sleep', 'animals', 'baby', 'cute', 'dog'] },
-    { id: 104, url: 'img/4.jpg', keywords: ['sleep', 'animals', 'cute', 'cat'] },
-    { id: 105, url: 'img/5.jpg', keywords: ['baby', 'success', 'win'] },
-];
+function getMemeForDisplay() {
+    console.log('hello getMemeForDisplay')
+    const meme = gMeme
+    return meme
+}
+
+function updateMemeText() {
+    console.log('hello updateMemeText')
+    var elText = document.querySelector('.text-input').value
+    console.log('elText', elText);
+    gMeme.lines[0].txt = elText
+    renderCanvas()
+}
+
+function updateMemePic(elImg) { // bug text wont clear
+    console.log('hello updateMemeText', elImg.id)
+    gMeme.selectedImgId = elImg.id
+    renderCanvas()
+}
