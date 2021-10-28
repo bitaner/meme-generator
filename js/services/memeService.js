@@ -52,14 +52,14 @@ function updateMemeText() {
 
 function fontSize(diff) {
     // console.log('hello fontSize')
-    gMeme.lines[gCurrLine].size += diff
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
         // console.log('gMeme.lines[0].size', gMeme.lines[0].size);
 }
 
 
 function lineHeight(diff) {
     // console.log('hello lineHeight')
-    gMeme.lines[gCurrLine].lineHeight += diff
+    gMeme.lines[gMeme.selectedLineIdx].lineHeight += diff
 }
 
 
@@ -68,7 +68,7 @@ function newLine() {
     if (gMeme.lines.length < 2) { createLine() }
     (gMeme.selectedLineIdx === 0) ? gMeme.selectedLineIdx = 1: gMeme.selectedLineIdx = 0
     getCurrLine()
-    gMeme.lines[gCurrLine].txt = gElText.value
+    gMeme.lines[gMeme.selectedLineIdx].txt = gElText.value
         // console.log('gCurrLine', gCurrLine);
 }
 
@@ -96,7 +96,7 @@ function getMemeCurrLine() {
 
 function updateMemePic(elImg) {
     clearTxtInput()
-    gMeme.lines[gCurrLine].txt = ''
+    gMeme.lines[gMeme.selectedLineIdx].txt = ''
         // console.log('hello updateMemeText', elImg.id)
     gMeme.selectedImgId = elImg.id
     renderCanvas()

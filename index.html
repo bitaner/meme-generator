@@ -29,32 +29,54 @@
 
 
 
-    <!-- no css -->
-    <h1>hello meme</h1>
-    <section class="canvas-container flex align-center space-evenly">
-        <section class="control-box flex align-center space-around column">
-            <!-- can use grid for this -->
-            <h2>control box</h2>
-            <input type="text" class="text-input" placeholder="TXT here" oninput="updateMemeText()">
-            <!-- i want to leave button pressed -->
-            <button class="font-size" onclick="onFontSize(2)">font+</button>
-            <button class="font-size" onclick="onFontSize(-2)">font-</button>
-            <button class="line-height" onclick="onLineHeight(-2)">move up</button>
-            <button class="line-height" onclick="onLineHeight(2)">move down</button>
-            <!-- switch line not done -->
-            <button class="btn-switch-line" onclick="onnewLine()">switch line</button>
 
+    <main class="modal" hidden>
+        <!-- WTF!!! -->
+
+        <section class=" container main-wrapper flex space-evenly align-center">
+            <canvas id="main-canvas" width="500" height="500" class="meme-canvas"></canvas>
+            <section class="control-box flex align-center space-around column">
+                <!-- can use grid for this -->
+                <h2>control box</h2>
+                <input type="text" class="text-input" placeholder="TXT here" oninput="updateMemeText()">
+                <!-- i want to leave button pressed -->
+                <button class="font-size" onclick="onFontSize(2)">font+</button>
+                <button class="font-size" onclick="onFontSize(-2)">font-</button>
+                <button class="line-height" onclick="onLineHeight(-2)">move up</button>
+                <button class="line-height" onclick="onLineHeight(2)">move down</button>
+                <!-- switch line -->
+                <button class="btn-switch-line" onclick="onnewLine()">switch line</button>
+                <button class="editor-toggle" onclick="hideMemeEditor()">back to gallery</button>
+
+            </section>
         </section>
-        <canvas id="main-canvas" width="500" height="500" class="meme-canvas"></canvas>
-    </section>
 
+    </main>
+
+
+    <!-- no css -->
     <section class="gallery-grid-container">
-        <img src="img/1.jpg" alt="" class="grid-img" id="1" onclick="updateMemePic(this)">
-        <img src="img/2.jpg" alt="" class="grid-img" id="2" onclick="updateMemePic(this)">
-        <img src="img/3.jpg" alt="" class="grid-img" id="3" onclick="updateMemePic(this)">
-        <img src="img/4.jpg" alt="" class="grid-img" id="4" onclick="updateMemePic(this)">
-        <img src="img/5.jpg" alt="" class="grid-img" id="5" onclick="updateMemePic(this)">
+        <img src="img/1.jpg" alt="" class="grid-img" id="1" onclick="toggleMemeEditor(this)">
+        <img src="img/2.jpg" alt="" class="grid-img" id="2" onclick="toggleMemeEditor(this)">
+        <img src="img/3.jpg" alt="" class="grid-img" id="3" onclick="toggleMemeEditor(this)">
+        <img src="img/4.jpg" alt="" class="grid-img" id="4" onclick="toggleMemeEditor(this)">
+        <img src="img/5.jpg" alt="" class="grid-img" id="5" onclick="toggleMemeEditor(this)">
     </section>
+    <!-- no css -->
+
+    <footer>
+        <section class="footer-container container footer flex space-evenly">
+
+            <!-- <section class="footer container flex space-evenly"> -->
+            <div class="logo">Meme academy</div>
+            <small>© 2021 Meme academy - All Rights Reserved - find more spirnts at coding-academy.org</small>
+            <!-- </section> -->
+        </section>
+
+
+    </footer>
+
+
 
     <script src="js/utils.js"></script>
     <script src="js/services/memeService.js"></script>

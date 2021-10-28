@@ -32,6 +32,7 @@ function renderCanvas() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         drawText(meme)
+            // markCurrLine(x, y, text)
     };
 }
 
@@ -103,12 +104,13 @@ function getCurrLine() {
     console.log('hello getCurrLine', gCurrLine)
 }
 
+// work with lineIdx not gcurline
+
 function markCurrLine(x, y, text) {
     console.log('hello markCurrLine')
     const meme = getMemeForDisplay()
     gCtx.strokeStyle = 'black'
-    gCtx.strokeRect((x / 2), (y - meme.lines[gCurrLine].size), gCtx.measureText(text).width, 50)
-
+    gCtx.strokeRect((x - (gCtx.measureText(text).width / 2) - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
 }
 
 // -------- CLEAR CANVAS ---------- //
@@ -125,4 +127,24 @@ function toggleMenu() {
     var mainMenu = document.getElementById('mainMenu');
     console.log(mainMenu);
     mainMenu.classList.toggle('open');
+}
+
+
+// -------------- TOGGLE EDITOR ------------
+function example() {
+    console.log('hello example')
+}
+
+function toggleMemeEditor(elImg) {
+    console.log('hello toggleMemeEditor')
+    document.body.classList.toggle('open-meme-editor')
+        // model:
+    updateMemePic(elImg)
+        // dom:
+    renderCanvas()
+}
+
+function hideMemeEditor() {
+    console.log('hello hideMemeEditor')
+    document.body.classList.toggle('open-meme-editor')
 }

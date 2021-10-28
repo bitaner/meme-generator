@@ -49,14 +49,22 @@ body {
     margin: 0;
 }
 
-
-/* HEADER */
-
 header {
-    /* height: 130px; */
     font-family: latobold, sans-serif;
     background-color: cornflowerblue;
 }
+
+footer {
+    background-color: cornflowerblue;
+}
+
+small {
+    background-color: inherit;
+    line-height: 50px;
+}
+
+
+/* HEADER */
 
 .container {
     background-color: inherit;
@@ -93,7 +101,6 @@ header {
     text-decoration: none;
     display: block;
     line-height: 130px;
-    height: 130px;
     width: 8.4375rem;
     text-align: center;
     border-right: 1px solid #1e1e1e;
@@ -184,13 +191,54 @@ header {
 }
 
 
-/* CANVAS SECTION */
+/* MAIN SECTION */
 
-.canvas-container {
+.main-wrapper {
     background-color: rgb(170, 63, 24);
-    margin: 10px;
-    border-radius: 1%;
+    border-inline: 5px solid #1e1e1e;
+    /* padding: 20px; */
 }
+
+@media (max-width: 980px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+}
+
+.main-wrapper .first-panel {
+    width: 300px;
+    padding-right: 20px;
+}
+
+@media (max-width: 980px) {
+    .main-wrapper .first-panel {
+        width: 100%;
+        column-count: 2;
+        column-gap: 20px;
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    .main-wrapper .first-panel {
+        column-count: 1;
+        column-gap: 0;
+    }
+}
+
+.main-wrapper .second-panel {
+    width: 620px;
+}
+
+@media (max-width: 980px) {
+    .main-wrapper .second-panel {
+        width: 100%;
+    }
+}
+
+
+/* CANVAS SECTION */
 
 .meme-canvas {
     border: 5px solid rgb(75, 75, 75);
@@ -199,6 +247,29 @@ header {
 
 .text-input {
     background-color: #fff;
+}
+
+
+/* OPEN MEME EDITOR */
+
+body.open-meme-editor .main-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+body.open-meme-editor .modal {
+    display: block;
+}
+
+.modal {
+    position: fixed;
+    border: 2px solid #a6a6a6;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90vh;
+    width: 90%;
 }
 
 
@@ -218,6 +289,20 @@ header {
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
+    transition: all 300ms;
+}
+
+.grid-img:hover {
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+
+/* FOOTER */
+
+footer .logo {
+    /* height: 50px; */
+    line-height: 50px;
 }
 
 
@@ -241,6 +326,10 @@ header {
 
 .align-center {
     align-items: center;
+}
+
+.vertical-center {
+    align-content: center;
 }
 
 .clean-list {
