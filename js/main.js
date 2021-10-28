@@ -28,7 +28,7 @@ function renderCanvas() {
     gElCanvas = document.getElementById('main-canvas');
     gCtx = gElCanvas.getContext('2d');
     var img = new Image();
-    img.src = `img/${gMeme.selectedImgId}.jpg`
+    img.src = `img/${meme.selectedImgId}.jpg`
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         drawText(meme)
@@ -53,18 +53,23 @@ function drawImg() {
 // ---------------------- TEXT --------------------------
 
 function drawText(meme) {
-    var text = meme.lines[gCurrLine].txt
-    if (!text) text = ''
-    gCtx.font = `${meme.lines[gCurrLine].size}px ${meme.lines[gCurrLine].font}`
-    const x = gElCanvas.width / 2
-    const y = meme.lines[gCurrLine].lineHeight
-    gCtx.lineWidth = meme.lineWidth;
-    gCtx.strokeStyle = meme.lines[gCurrLine].margin
-    gCtx.fillStyle = meme.lines[gCurrLine].color
-    gCtx.textAlign = meme.lines[gCurrLine].align
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
+    meme.lines.forEach(line => {
+        var text = line.txt
+        if (!text) text = ''
+        gCtx.font = `${line.size}px ${line.font}`
+        const x = gElCanvas.width / 2
+        const y = line.lineHeight
+        gCtx.lineWidth = meme.lineWidth;
+        gCtx.strokeStyle = line.margin
+        gCtx.fillStyle = line.color
+        gCtx.textAlign = line.align
+        gCtx.fillText(text, x, y);
+        gCtx.strokeText(text, x, y);
+        markCurrLine(x, y, text)
+    });
+
 }
+
 
 function onFontSize(diff) {
     // console.log('hello onFontSize')
@@ -78,12 +83,13 @@ function onLineHeight(diff) {
     renderCanvas()
 }
 
-// new line not done
-
 function onnewLine() {
-    // console.log('hello newLine')
+    console.log('hello newLine')
+        // saveCurrLine()
+        // gCtx.save()
     newLine()
     clearTxtInput()
+        // clearCanvas()
     renderCanvas()
 }
 
@@ -97,6 +103,14 @@ function getCurrLine() {
     console.log('hello getCurrLine', gCurrLine)
 }
 
+function markCurrLine(x, y, text) {
+    console.log('hello markCurrLine')
+    const meme = getMemeForDisplay()
+    gCtx.strokeStyle = 'black'
+    gCtx.strokeRect((x / 2), (y - meme.lines[gCurrLine].size), gCtx.measureText(text).width, 50)
+
+}
+
 // -------- CLEAR CANVAS ---------- //
 
 function clearCanvas() { // didnt use yet
@@ -106,3 +120,9 @@ function clearCanvas() { // didnt use yet
 }
 
 // -------------------------------
+
+function toggleMenu() {
+    var mainMenu = document.getElementById('mainMenu');
+    console.log(mainMenu);
+    mainMenu.classList.toggle('open');
+}
