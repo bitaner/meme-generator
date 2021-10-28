@@ -12,13 +12,20 @@
 <body onload="onInit()">
     <h1>hello meme</h1>
     <section class="canvas-container flex align-center space-evenly">
-        <section class="meme-controller flex align-center space-around column">
-            <h2>Meme controller</h2>
+        <section class="control-box flex align-center space-around column">
+            <!-- can use grid for this -->
+            <h2>control box</h2>
             <input type="text" class="text-input" placeholder="TXT here" oninput="updateMemeText()">
+            <!-- i want to leave button pressed -->
+            <button class="font-size" onclick="onFontSize(2)">font+</button>
+            <button class="font-size" onclick="onFontSize(-2)">font-</button>
+            <button class="line-height" onclick="onLineHeight(-2)">move up</button>
+            <button class="line-height" onclick="onLineHeight(2)">move down</button>
+            <!-- switch line not done -->
+            <button class="btn-switch-line" onclick="onnewLine()">switch line</button>
 
         </section>
         <canvas id="main-canvas" width="500" height="500" class="meme-canvas"></canvas>
-        <!-- <a class="btn-gallery" href="#" onclick="onOpenGallery()">Gallery</a> -->
     </section>
 
     <section class="gallery-grid-container">
