@@ -1,5 +1,7 @@
 'use strict'
 
+// NOT USED ATM
+
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))
 }

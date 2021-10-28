@@ -56,6 +56,9 @@ header {
 
 footer {
     background-color: cornflowerblue;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 small {
@@ -87,10 +90,11 @@ small {
 
 /* header .header-wrapper {
     height: 130px;
-}   TAKEN BUT NOT USED ATM */
+}   NOT USED ATM */
 
 .logo {
     background-color: inherit;
+    font-family: latobold, sans-serif
 }
 
 
@@ -150,9 +154,9 @@ small {
 }
 
 .toggle-menu-btn {
-    background: none;
+    background-color: cornflowerblue;
     border: none;
-    color: #fff;
+    color: rgb(70, 69, 69);
     font-size: 1.75rem;
     padding: 20px;
     display: none;
@@ -196,7 +200,6 @@ small {
 .main-wrapper {
     background-color: rgb(170, 63, 24);
     border-inline: 5px solid #1e1e1e;
-    /* padding: 20px; */
 }
 
 @media (max-width: 980px) {
@@ -265,10 +268,10 @@ body.open-meme-editor .modal {
     position: fixed;
     border: 2px solid #a6a6a6;
     z-index: 1;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 90vh;
+    height: 70vh;
     width: 90%;
 }
 
@@ -276,17 +279,18 @@ body.open-meme-editor .modal {
 /* GALLERY SECTION */
 
 .gallery-grid-container {
-    margin: 10px;
+    margin: auto;
     display: grid;
     width: 90vw;
     grid-gap: 10px;
-    grid-template-columns: repeat( auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat( auto-fit, minmax(150px, 1fr));
     /* check if fill or fit */
 }
 
 .grid-img {
     width: 150px;
     height: 150px;
+    margin: auto;
     object-fit: cover;
     border-radius: 50%;
     transition: all 300ms;
@@ -295,6 +299,7 @@ body.open-meme-editor .modal {
 .grid-img:hover {
     cursor: pointer;
     border-radius: 20px;
+    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.51);
 }
 
 
