@@ -13,7 +13,7 @@
     <header>
         <section class="container header-wrapper flex align-center space-between">
             <!-- edit logo -->
-            <div class="logo">Meme academy</div>
+            <div class="logo"><span>Meme</span> academy</div>
             <nav id="mainMenu" class="main-menu-wrapper">
                 <ul class="main-menu clean-list flex align-center">
                     <li><a href="#" onclick="hideMemeEditor()">Gallery \ editor</a></li>
@@ -25,80 +25,91 @@
             </nav>
         </section>
     </header>
+    <section class="gallery-main-container container ">
+        <header class="gallery-header container flex space-between">
+            <form class="search-key-words" onchange="onKeySearch(event)">
+                <input list="search-key-words" class="search-bar" name="search" placeholder="Search" />
+                <datalist id="search-key-words">
+                </datalist>
+            </form>
+            <section class="key-words-container flex">
+                <div class="key-words-container">
+                    <ul class="key-words clean-list flex align-center">
+                        <li onclick="">funny</li>
+                        <li>animal</li>
+                        <li>baby</li>
+                    </ul>
+                </div>
+                <button class="more" onclick="onToggleShowKeyWords()">More</button>
+            </section>
+        </header>
+        <section class="gallery-grid-container container">
+            <!-- RENDERED IMGS GO HERE -->
+        </section>
+    </section>
 
     <main class="modal" hidden>
 
         <section class=" container main-wrapper flex space-evenly align-center">
             <!-- <section class="flex space-evenly align-center"> -->
             <canvas id="main-canvas" width="500" height="500" class="meme-canvas"></canvas>
-            <section class="control-box flex align-center space-around column">
+            <section class="control-box">
                 <!-- can use grid for this? for small screen wrap around canvas -->
-                <h2>Control box</h2>
+                <!-- <h2>Control box</h2> -->
                 <!-- TEXT INPUT -->
-                <input type="text" class="text-input" placeholder="TXT here" oninput="updateMemeText()">
+                <input type="text" class="text-input control-text" placeholder="TXT here" oninput="updateMemeText()">
                 <!-- FONT SIZE +\- -->
                 <!-- i want to leave button pressed -->
-                <button class="font-size" onclick="onFontSize(2)">F+</button>
-                <button class="font-size" onclick="onFontSize(-2)">F-</button>
+                <button class="ctrl control-font-plus" onclick="onFontSize(2)"><img src="img/png/increase-font-icon.png" class="control-img" alt=""></button>
+                <button class="ctrl control-font-minus" onclick="onFontSize(-2)"><img src="img/png/decrease-font-icon.png" class="control-img" alt=""></button>
                 <!-- LINE HIGHET +\- -->
-                <button class="line-height" onclick="onLineHeight(-2)">⇑</button>
-                <button class="line-height" onclick="onLineHeight(2)">⇓</button>
+                <button class="ctrl control-up" onclick="onLineHeight(-2)"><img src="img/png/up.png" class="control-img" alt=""></button>
+                <button class="ctrl control-down" onclick="onLineHeight(2)"><img src="img/png/down.png" class="control-img" alt=""></button>
                 <!-- SWITCH LINE -->
-                <button class="btn-new-line" onclick="onNewLine()">Add line</button>
-                <button class="btn-switch-line" onclick="onSwitchLine()">Switch line</button>
-                <label for="font-select">Choose font:</label>
+                <button class="ctrl control-new" onclick="onNewLine()"><img src="img/png/add.png" class="control-img" alt=""></button>
+                <button class="ctrl control-switch" onclick="onSwitchLine()"><img src="img/png/up-and-down-opposite-double-arrows-side-by-side.png" class="control-img" alt=""></button>
                 <!-- FONT -->
-                <select class="font-select" name="font-select" id="font-select" onchange="onChangeFont(value)">
-                    <option value="impact">Impact</option>
-                    <option value="lato">Lato</option>
+                <select class="font-select control-font" name="font-select" id="font-select" onchange="onChangeFont(value)">
+                    <option value="impact" style="font-family: 'impact';">Impact</option>
+                    <option value="latobold" style="font-family: 'latobold';">Lato bold</option>
                 </select>
                 <!-- COLOR -->
-                <input type="color" id="color" name="color" onchange="onColorIt()" />
-                <input type="color" id="margin-color" name="margin-color" onchange="onColorIt()" />
+                <input type="color" class="ctrl-c control-color" id="color" name="color" onchange="onColorIt()" />
+                <input type="color" class="ctrl-c control-margin-c" id="margin-color" name="margin-color" onchange="onColorIt()" />
                 <!-- ALIGNMENT -->
-                <button class="btn-align" id="left" onclick="onAlignChange(this)">L</button>
-                <button class="btn-align" id="center" onclick="onAlignChange(this)">C</button>
-                <button class="btn-align" id="right" onclick="onAlignChange(this)">R</button>
+                <button class="ctrl control-l" id="left" onclick="onAlignChange(this)"><img src="img/png/align-to-left.png" class="control-img" alt=""></button>
+                <button class="ctrl control-c" id="center" onclick="onAlignChange(this)"><img src="img/png/center-text-alignment.png" class="control-img" alt=""></button>
+                <button class="ctrl control-r" id="right" onclick="onAlignChange(this)"><img src="img/png/align-to-right.png" class="control-img" alt=""></button>
                 <!-- DELETE -->
-                <button class="btn-delete" onclick="onDeleteCurrLine()">Delete</button>
+                <button class="ctrl control-d" onclick="onDeleteCurrLine()"><img src="img/png/trash.png" class="control-img" alt=""></button>
 
                 <!-- SHARE TO FB -->
-                <!-- <button class="btn" onclick="uploadImg()">share</button>
-                <p class="user-msg"></p>
+                <button class="control-share" onclick="uploadImg()">share</button>
+                <!-- <p class="user-msg"></p>
                 <div class="share-container"></div> -->
 
                 <!-- SAVE TO DEVICE -->
-                <a href="#" onclick="downloadCanvas(this)" download="myphoto">Download</a>
-
+                <a href="#" class="control-save" onclick="downloadCanvas(this)" download="myphoto">Download</a>
                 <!-- BACK TO GALLERY -->
-                <button class="editor-toggle" onclick="hideMemeEditor()">Back to gallery</button>
+                <button class=" editor-toggle control-back" onclick="hideMemeEditor()">Gallery</button>
             </section>
         </section>
     </main>
 
-    <section class="gallery-grid-container container">
-        <img src="img/1.jpg" alt="" class="grid-img" id="1" onclick="toggleMemeEditor(this)">
-        <img src="img/2.jpg" alt="" class="grid-img" id="2" onclick="toggleMemeEditor(this)">
-        <img src="img/3.jpg" alt="" class="grid-img" id="3" onclick="toggleMemeEditor(this)">
-        <img src="img/4.jpg" alt="" class="grid-img" id="4" onclick="toggleMemeEditor(this)">
-        <img src="img/5.jpg" alt="" class="grid-img" id="5" onclick="toggleMemeEditor(this)">
-        <img src="img/2.jpg" alt="" class="grid-img" id="2" onclick="toggleMemeEditor(this)">
-        <img src="img/3.jpg" alt="" class="grid-img" id="3" onclick="toggleMemeEditor(this)">
-        <img src="img/4.jpg" alt="" class="grid-img" id="4" onclick="toggleMemeEditor(this)">
-        <img src="img/5.jpg" alt="" class="grid-img" id="5" onclick="toggleMemeEditor(this)">
-    </section>
 
     <footer>
-        <section class="footer-container container footer flex space-evenly">
+        <section class="footer-container container footer flex space-evenly align-center">
 
             <!-- <section class="footer container flex space-evenly"> -->
-            <div class="logo">Meme academy</div>
+            <div class="logo"><span>Meme</span> academy</div>
             <small>© 2021 Meme academy - All Rights Reserved - find more spirnts at coding-academy.org</small>
+
             <!-- </section> -->
         </section>
     </footer>
 
     <script src="js/utils.js"></script>
+    <script src="js/services/imageService.js"></script>
     <script src="js/services/memeService.js"></script>
     <script src="js/services/storageService.js"></script>
     <script src="js/services/upload-service.js"></script>

@@ -3,9 +3,6 @@
 // -------------------global vars -----------------------
 
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 } // didnt use yet
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] }]; // didnt use yet
-var gImg // didnt use yet
 var gCtx
 var gElCanvas
 var gCurrLine = 0
@@ -16,6 +13,7 @@ var gCurrLine = 0
 
 function onInit() {
     console.log('hello onInit')
+    renderGallery()
         // renderCanvas()
         // will load from storage : meme bank, added imgs, stickers maybe
 }
@@ -28,13 +26,14 @@ function renderCanvas() {
     // console.log('hello renderCanvas')
     const meme = getMemeForDisplay()
         // console.log('meme', meme);
-    gElCanvas = document.getElementById('main-canvas');
-    gCtx = gElCanvas.getContext('2d');
+    gElCanvas = document.getElementById('main-canvas')
+    gCtx = gElCanvas.getContext('2d')
     var img = new Image();
     img.src = `img/${meme.selectedImgId}.jpg`
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         drawText(meme)
+        markCurrLine()
     };
 }
 
@@ -44,10 +43,10 @@ function renderCanvas() {
 
 function drawImg() {
     const meme = getMemeForDisplay()
-    var img = new Image();
+    var img = new Image()
     img.src = `img/${meme.selectedImgId}.jpg`
     img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         drawText()
     };
 }
@@ -62,14 +61,14 @@ function drawText(meme) {
         if (!text) text = ''
         gCtx.font = `${line.size}px ${line.font}`
         const x = line.x
-        const y = line.lineHeight
+        const y = line.y
         gCtx.lineWidth = meme.lineWidth;
         gCtx.strokeStyle = line.margin
         gCtx.fillStyle = line.color
         gCtx.textAlign = line.align
-        gCtx.fillText(text, x, y);
-        gCtx.strokeText(text, x, y);
-        markCurrLine(x, y, text)
+        gCtx.fillText(text, x, y)
+        gCtx.strokeText(text, x, y)
+            // markCurrLine(x, y, text)
     });
 }
 
@@ -115,11 +114,24 @@ function getCurrLine() {
         // console.log('hello getCurrLine', gCurrLine)
 }
 
-function markCurrLine(x, y, text) {
+function markCurrLine() {
     // console.log('hello markCurrLine')
     const meme = getMemeForDisplay()
+    const x = meme.lines[meme.selectedLineIdx].x
+    const y = meme.lines[meme.selectedLineIdx].y
+    const text = meme.lines[meme.selectedLineIdx].txt
     gCtx.strokeStyle = 'black'
-    gCtx.strokeRect((x - (gCtx.measureText(text).width / 2) - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+    gCtx.setLineDash([10, 10])
+    if (meme.lines[meme.selectedLineIdx].align === 'center') {
+        gCtx.strokeRect((x - (gCtx.measureText(text).width / 2) - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+    } else if (meme.lines[meme.selectedLineIdx].align === 'start') {
+        gCtx.strokeRect((x - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+
+    } else if (meme.lines[meme.selectedLineIdx].align === 'end') {
+        gCtx.strokeRect(((x - 10) - gCtx.measureText(text).width), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+
+    }
+    gCtx.setLineDash([])
 }
 
 function onChangeFont(font) {
@@ -131,12 +143,12 @@ function onChangeFont(font) {
 function onColorIt() {
     // console.log('hello onColorIt')
     var color = document.querySelector('[name=color]').value;
-    var marginColor = document.querySelector('[name=margin-color').value;
+    var marginColor = document.querySelector('[name=margin-color').value
     colorCurrLine(color, marginColor)
     renderCanvas()
 }
 
-function onAlignChange(align) {
+function onAlignChange(align) { /// bug with square
     // console.log('hello onAlignChange')
     const alignment = align.id
     alignChange(alignment)
@@ -158,18 +170,19 @@ function onDeleteCurrLine() { // bug - curr line update
 
 
 function clearCanvas() { // didnt use yet
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    // You may clear part of the canvas
-    // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+        // You may clear part of the canvas
+        // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
+
 
 // --------------TOGGLE MENU    -----------------
 
 
 function toggleMenu() {
     // console.log('toggleMenu')
-    var mainMenu = document.getElementById('mainMenu');
-    mainMenu.classList.toggle('open');
+    var mainMenu = document.getElementById('mainMenu')
+    mainMenu.classList.toggle('open')
 }
 
 
@@ -194,8 +207,8 @@ function hideMemeEditor() {
 //------------- DOWNLOAD MEME -------------
 
 
-function downloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL();
-    // console.log('data', data);
-    elLink.href = data;
+function downloadCanvas(elLink) { // bug with square
+    const data = gElCanvas.toDataURL()
+        // console.log('data', data);
+    elLink.href = data
 }

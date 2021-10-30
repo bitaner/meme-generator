@@ -9,6 +9,7 @@ var gElText = document.querySelector('.text-input').value
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
+    currKeyWord: '',
     lines: [{
         txt: gElText.value,
         size: 40,
@@ -16,7 +17,7 @@ var gMeme = {
         margin: 'black',
         color: 'white',
         font: 'impact',
-        lineHeight: 50,
+        y: 50,
         x: 250
     }, ]
 }
@@ -49,40 +50,10 @@ function fontSize(diff) {
 
 function lineHeight(diff) {
     // console.log('hello lineHeight')
-    gMeme.lines[gMeme.selectedLineIdx].lineHeight += diff
+    gMeme.lines[gMeme.selectedLineIdx].y += diff
 }
 
-function newLine() {
-    // console.log('hello newLine')
-    createLine()
-    gMeme.selectedLineIdx = (gMeme.lines.length - 1)
-    gMeme.lines[gMeme.selectedLineIdx].txt = gElText.value
-        // console.log('gCurrLine', gCurrLine);
-}
-
-function createLine() {
-    // console.log('hello createLine')
-    const line = {
-        txt: gElText.value,
-        size: 40,
-        align: 'center',
-        margin: 'black',
-        color: 'white',
-        font: 'impact',
-        lineHeight: getLineHeight(),
-        x: 250
-    }
-    gMeme.lines.push(line)
-        // console.log('gMeme', gMeme);
-}
-
-function getMemeCurrLine() {
-    // console.log('hello getMemeCurrLine')
-    return gMeme.selectedLineIdx
-}
-
-
-//----------------
+//----------------  MEME PIC
 
 
 function updateMemePic(elImg) {
@@ -94,7 +65,7 @@ function updateMemePic(elImg) {
 }
 
 
-// ---------- GET LINE HEIGHT 
+// ---------- GET CURRLINE HEIGHT 
 
 
 function getLineHeight() {
@@ -121,7 +92,7 @@ function ChangeCurrLineFont(font) { // bug - when switching line need to change 
 }
 
 
-//-------- CHANGE CUUR LINE COLOR
+//-------- CHANGE CURR LINE COLOR
 
 
 function colorCurrLine(color, marginColor) { // bug same as change currfont
@@ -132,6 +103,7 @@ function colorCurrLine(color, marginColor) { // bug same as change currfont
 
 
 //--------- CHANGE CURR LINE ALIGN
+
 
 function alignChange(alignment) {
     // console.log('hello alignChange')
@@ -151,10 +123,42 @@ function alignChange(alignment) {
 }
 
 
-//------------- DELETE CURR LINE
+//-------------ADD CHANGE DELETE CURR LINE
 
+
+function newLine() {
+    // console.log('hello newLine')
+    createLine()
+    gMeme.selectedLineIdx = (gMeme.lines.length - 1)
+    gMeme.lines[gMeme.selectedLineIdx].txt = gElText.value
+        // console.log('gCurrLine', gCurrLine);
+}
+
+function createLine() {
+    // console.log('hello createLine')
+    const line = {
+        txt: gElText.value,
+        size: 40,
+        align: 'center',
+        margin: 'black',
+        color: 'white',
+        font: 'impact',
+        y: getLineHeight(),
+        x: 250
+    }
+    gMeme.lines.push(line)
+        // console.log('gMeme', gMeme);
+}
+
+function getMemeCurrLine() {
+    // console.log('hello getMemeCurrLine')
+    return gMeme.selectedLineIdx
+}
 
 function deleteCurrLine() {
     // console.log('hello deletecurrline')
+    console.log('before', gMeme.lines, gMeme.selectedLineIdx)
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx > 0 ? (gMeme.selectedLineIdx -= 1) : gMeme.selectedLineIdx
+    console.log('after', gMeme.lines, gMeme.selectedLineIdx)
 }
