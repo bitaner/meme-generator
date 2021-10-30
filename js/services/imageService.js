@@ -29,6 +29,56 @@ var gImgs = [{
         url: 'img/5.jpg',
         keywords: ['happy', 'baby', 'success', 'great', 'cute']
     },
+    {
+        id: 6,
+        url: 'img/6.jpg',
+        keywords: ['stoned', 'aliens', 'funny', 'weird']
+    },
+    {
+        id: 7,
+        url: 'img/7.jpg',
+        keywords: ['happy', 'baby', 'surprized', 'cute']
+    },
+    {
+        id: 8,
+        url: 'img/8.jpg',
+        keywords: ['wonka', 'tell me more', 'sarcasm', 'man']
+    },
+    {
+        id: 9,
+        url: 'img/9.jpg',
+        keywords: ['what would you do', 'haim hecht', 'pointing']
+    },
+    {
+        id: 10,
+        url: 'img/10.jpg',
+        keywords: ['happy', 'success', 'great', 'cheers', 'leo', 'man']
+    },
+    {
+        id: 11,
+        url: 'img/11.jpg',
+        keywords: [, 'morphius', 'what if i told you', 'matrix', 'man']
+    },
+    {
+        id: 12,
+        url: 'img/12.jpg',
+        keywords: ['man', 'lotr', 'one does not simply', 'boromir']
+    },
+    {
+        id: 13,
+        url: 'img/13.jpg',
+        keywords: ['happy', 'funny', 'star trek', 'surprize', 'man']
+    },
+    {
+        id: 14,
+        url: 'img/14.jpg',
+        keywords: ['putin', 'peace', 'man', 'president']
+    },
+    {
+        id: 15,
+        url: 'img/15.jpg',
+        keywords: ['everywhere', 'toy', 'buzz', 'woody']
+    },
 
 ]; // didnt use yet
 var gImg // didnt use yet
