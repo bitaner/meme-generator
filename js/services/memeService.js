@@ -5,6 +5,7 @@
 
 
 var gElText = document.querySelector('.text-input').value
+var gElCanvas = document.getElementById('main-canvas')
 
 var gMeme = {
     selectedImgId: 5,
@@ -17,8 +18,8 @@ var gMeme = {
         margin: 'black',
         color: 'white',
         font: 'impact',
-        y: 50,
-        x: 250
+        y: (gElCanvas.height / 10),
+        x: (gElCanvas.width / 2)
     }, ]
 }
 
@@ -72,13 +73,13 @@ function getLineHeight() {
     // console.log('hello getLineHeight')
     switch (gMeme.lines.length) {
         case 0:
-            return 50
+            return (gElCanvas.height / 10)
             break;
         case 1:
-            return 450
+            return (gElCanvas.height / 10 * 9)
             break;
         default:
-            return 250
+            return (gElCanvas.height / 2)
     }
 }
 
@@ -109,15 +110,15 @@ function alignChange(alignment) {
     // console.log('hello alignChange')
     switch (alignment) {
         case 'left':
-            gMeme.lines[gMeme.selectedLineIdx].x = 50
+            gMeme.lines[gMeme.selectedLineIdx].x = gElCanvas.width / 10
             gMeme.lines[gMeme.selectedLineIdx].align = 'start'
             break;
         case 'right':
-            gMeme.lines[gMeme.selectedLineIdx].x = 450
+            gMeme.lines[gMeme.selectedLineIdx].x = gElCanvas.width / 10 * 9
             gMeme.lines[gMeme.selectedLineIdx].align = 'end'
             break;
         default:
-            gMeme.lines[gMeme.selectedLineIdx].x = 250
+            gMeme.lines[gMeme.selectedLineIdx].x = gElCanvas.width / 2
             gMeme.lines[gMeme.selectedLineIdx].align = 'center'
     }
 }
@@ -144,7 +145,7 @@ function createLine() {
         color: 'white',
         font: 'impact',
         y: getLineHeight(),
-        x: 250
+        x: (gElCanvas.width / 2),
     }
     gMeme.lines.push(line)
         // console.log('gMeme', gMeme);

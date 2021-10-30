@@ -4,7 +4,7 @@
 
 
 var gCtx
-var gElCanvas
+var gElCanvas = document.getElementById('main-canvas')
 var gCurrLine = 0
 
 
@@ -23,7 +23,8 @@ function onInit() {
 
 
 function renderCanvas() {
-    // console.log('hello renderCanvas')
+    getCanvasDimens()
+    console.log('hello renderCanvas')
     const meme = getMemeForDisplay()
         // console.log('meme', meme);
     gElCanvas = document.getElementById('main-canvas')
@@ -123,12 +124,12 @@ function markCurrLine() {
     gCtx.strokeStyle = 'black'
     gCtx.setLineDash([10, 10])
     if (meme.lines[meme.selectedLineIdx].align === 'center') {
-        gCtx.strokeRect((x - (gCtx.measureText(text).width / 2) - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+        gCtx.strokeRect((x - (gCtx.measureText(text).width / 2) - 10), (y - meme.lines[gCurrLine].size + 7), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size))
     } else if (meme.lines[meme.selectedLineIdx].align === 'start') {
-        gCtx.strokeRect((x - 10), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+        gCtx.strokeRect((x - 10), (y - meme.lines[gCurrLine].size + 7), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size))
 
     } else if (meme.lines[meme.selectedLineIdx].align === 'end') {
-        gCtx.strokeRect(((x - 10) - gCtx.measureText(text).width), (y - meme.lines[gCurrLine].size), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size + 10))
+        gCtx.strokeRect(((x - 10) - gCtx.measureText(text).width), (y - meme.lines[gCurrLine].size + 7), (gCtx.measureText(text).width + 20), (meme.lines[gCurrLine].size))
 
     }
     gCtx.setLineDash([])
@@ -211,4 +212,11 @@ function downloadCanvas(elLink) { // bug with square
     const data = gElCanvas.toDataURL()
         // console.log('data', data);
     elLink.href = data
+}
+
+// ----------- CANVAS DIMENSIONS
+
+function getCanvasDimens() {
+    console.log('hello getCanvasDimens')
+
 }

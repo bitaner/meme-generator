@@ -64,19 +64,15 @@ var gImgs = [{
         url: 'img/12.jpg',
         keywords: ['man', 'lotr', 'one does not simply', 'boromir']
     },
+
     {
         id: 13,
         url: 'img/13.jpg',
-        keywords: ['happy', 'funny', 'star trek', 'surprize', 'man']
+        keywords: ['putin', 'peace', 'man', 'president']
     },
     {
         id: 14,
         url: 'img/14.jpg',
-        keywords: ['putin', 'peace', 'man', 'president']
-    },
-    {
-        id: 15,
-        url: 'img/15.jpg',
         keywords: ['everywhere', 'toy', 'buzz', 'woody']
     },
 
@@ -115,8 +111,6 @@ function renderGallery() {
     console.log('hello renderGallery')
     let Imgs = getImgsForDisplay()
     let strHtml = ''
-        // REMOVE
-        // '<div class="file-input-container img-item"><h2>Choose your own image!</h2><input type="file" class="img-item file-input btn" name="image" onchange="onImgInput(event)"/></div>'
     strHtml += Imgs
         .map((img) => {
             return `<img src="${img.url}" alt="" class="grid-img" id="${img.id}" onclick="toggleMemeEditor(this)">`
