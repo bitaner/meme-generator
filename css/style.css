@@ -400,6 +400,13 @@ body.open-meme-editor .modal {
     width: 90%;
 }
 
+@media (max-width: 740px) {
+    .modal {
+        position: absolute;
+        z-index: 1;
+    }
+}
+
 
 /* GALLERY SECTION */
 
