@@ -23,7 +23,6 @@ function onInit() {
 
 
 function renderCanvas() {
-    getCanvasDimens()
     console.log('hello renderCanvas')
     const meme = getMemeForDisplay()
         // console.log('meme', meme);
@@ -76,6 +75,7 @@ function drawText(meme) {
 function onFontSize(diff) {
     // console.log('hello onFontSize')
     fontSize(diff)
+    markCurrLine()
     renderCanvas()
 }
 
@@ -160,20 +160,10 @@ function onAlignChange(align) { /// bug with square
 // --------  DELETE CURRLINE ---------- //
 
 
-function onDeleteCurrLine() { // bug - curr line update
+function onDeleteCurrLine() {
     // console.log('hello onDeleteCurrLine')
     deleteCurrLine()
     renderCanvas()
-}
-
-
-// -------- CLEAR CANVAS ---------- //
-
-
-function clearCanvas() { // didnt use yet
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-        // You may clear part of the canvas
-        // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
 
 
@@ -182,8 +172,8 @@ function clearCanvas() { // didnt use yet
 
 function toggleMenu() {
     // console.log('toggleMenu')
-    var mainMenu = document.getElementById('mainMenu')
-    mainMenu.classList.toggle('open')
+    var elMainMenu = document.getElementById('mainMenu')
+    elMainMenu.classList.toggle('open')
 }
 
 
@@ -212,11 +202,4 @@ function downloadCanvas(elLink) { // bug with square
     const data = gElCanvas.toDataURL()
         // console.log('data', data);
     elLink.href = data
-}
-
-// ----------- CANVAS DIMENSIONS
-
-function getCanvasDimens() {
-    console.log('hello getCanvasDimens')
-
 }

@@ -361,6 +361,10 @@ small {
     /* background-color: rgb(179, 61, 26); */
 }
 
+.control-share:hover {
+    cursor: not-allowed;
+}
+
 .control-save {
     grid-area: save;
     color: black;
@@ -372,6 +376,10 @@ small {
     vertical-align: middle;
     /* background-color: rgb(18, 139, 45); */
     text-decoration: none;
+}
+
+.control-save:hover {
+    cursor: not-allowed;
 }
 
 .control-back {
@@ -399,16 +407,21 @@ body.open-meme-editor .modal {
 .modal {
     position: absolute;
     z-index: 1;
-    top: 45%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 70vh;
-    width: 90%;
+    height: 72vh;
+    width: 100%;
 }
 
 @media (max-width: 740px) {
     .modal {
         z-index: 1;
+        top: 57%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 90vh;
+        width: 100%;
     }
 }
 
