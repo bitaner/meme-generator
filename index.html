@@ -26,23 +26,25 @@
         </section>
     </header>
     <section class="gallery-main-container container ">
-        <header class="gallery-header container flex space-between">
+        <section class="gallery-header flex space-between align-center">
             <form class="search-key-words" onchange="onKeySearch(event)">
                 <input list="search-key-words" class="search-bar" name="search" placeholder="Search" />
-                <datalist id="search-key-words">
+                <datalist id="search-key-words" class="datalist">
                 </datalist>
             </form>
-            <section class="key-words-container flex">
+            <section class=" flex">
                 <div class="key-words-container">
                     <ul class="key-words clean-list flex align-center">
                         <li onclick="">funny</li>
                         <li>animal</li>
                         <li>baby</li>
+                        <li><button class="more" onclick="onToggleShowKeyWords()">More</button></li>
+
                     </ul>
                 </div>
-                <button class="more" onclick="onToggleShowKeyWords()">More</button>
+
             </section>
-        </header>
+        </section>
         <section class="gallery-grid-container container">
             <!-- RENDERED IMGS GO HERE -->
         </section>
@@ -51,18 +53,19 @@
     <main class="modal" hidden>
 
         <section class=" container main-wrapper flex space-evenly align-center">
-            <!-- <section class="flex space-evenly align-center"> -->
-            <canvas id="main-canvas" class="main-canvas" width="400" height="400" class="meme-canvas"></canvas>
+            <canvas id="main-canvas" class="main-canvas" width="400" height="400" class="meme-canvas">
+            </canvas>
             <section class="control-box">
                 <!-- TEXT INPUT -->
                 <input type="text" class="text-input control-text" placeholder="TXT here" oninput="updateMemeText()">
                 <!-- FONT SIZE +\- -->
                 <!-- i want to leave button pressed -->
+                <!-- loop as long as mouse is not up -->
                 <button class="ctrl control-font-plus" onclick="onFontSize(2)"><img src="img/png/increase-font-icon.png" class="control-img" alt=""></button>
                 <button class="ctrl control-font-minus" onclick="onFontSize(-2)"><img src="img/png/decrease-font-icon.png" class="control-img" alt=""></button>
                 <!-- LINE HIGHET +\- -->
                 <button class="ctrl control-up" onclick="onLineHeight(-2)"><img src="img/png/up.png" class="control-img" alt=""></button>
-                <button class="ctrl control-down" onclick="onLineHeight(2)"><img src="img/png/down.png" class="control-img" alt=""></button>
+                <button class="ctrl control-down" onclick="onLineHeight(2)"><img src="img/png/up.png" class="control-img" alt=""></button>
                 <!-- SWITCH LINE -->
                 <button class="ctrl control-new" onclick="onNewLine()"><img src="img/png/add.png" class="control-img" alt=""></button>
                 <button class="ctrl control-switch" onclick="onSwitchLine()"><img src="img/png/up-and-down-opposite-double-arrows-side-by-side.png" class="control-img" alt=""></button>
@@ -72,6 +75,7 @@
                     <option value="latobold" style="font-family: 'latobold';">Lato bold</option>
                 </select>
                 <!-- COLOR -->
+                <!-- get the color of the button from the func -->
                 <input type="color" class="ctrl-c control-color" id="color" name="color" onchange="onColorIt()" />
                 <input type="color" class="ctrl-c control-margin-c" id="margin-color" name="margin-color" onchange="onColorIt()" />
                 <!-- ALIGNMENT -->
@@ -82,20 +86,20 @@
                 <button class="ctrl control-d" onclick="onDeleteCurrLine()"><img src="img/png/trash.png" class="control-img" alt=""></button>
 
                 <!-- SHARE TO FB -->
-                <button class="control-share" onclick="uploadImg()">share</button>
+                <button class="ctrl control-share" onclick="uploadImg()"><img src="img/png/share.png" class="control-img" alt=""></button>
                 <!-- <p class="user-msg"></p>
                 <div class="share-container"></div> -->
 
                 <!-- SAVE TO DEVICE -->
-                <a href="#" class="control-save" onclick="downloadCanvas(this)" download="myphoto">Download</a>
+                <a href="#" class="ctrl control-save" onclick="downloadCanvas(this)" download="myphoto"><img src="img/png/download.png" class="control-img" alt=""></a>
                 <!-- BACK TO GALLERY -->
-                <button class=" editor-toggle control-back" onclick="hideMemeEditor()">Gallery</button>
+                <button class=" editor-toggle control-back" onclick="hideMemeEditor()">Back to gallery</button>
             </section>
         </section>
     </main>
-
+    <!-- PROBLEM WITH FOOTER -->
     <footer>
-        <section class="footer-container container footer flex space-evenly align-center">
+        <section class="footer-container container footer flex space-between align-center">
 
             <div class="logo"><span>Meme</span> academy</div>
             <small>© 2021 Meme academy - All Rights Reserved - find more spirnts at coding-academy.org</small>

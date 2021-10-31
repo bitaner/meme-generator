@@ -14,7 +14,6 @@ var gCurrLine = 0
 function onInit() {
     console.log('hello onInit')
     renderGallery()
-        // renderCanvas()
         // will load from storage : meme bank, added imgs, stickers maybe
 }
 
@@ -145,6 +144,7 @@ function onColorIt() {
     // console.log('hello onColorIt')
     var color = document.querySelector('[name=color]').value;
     var marginColor = document.querySelector('[name=margin-color').value
+    setColorButtonsBGC(color, marginColor)
     colorCurrLine(color, marginColor)
     renderCanvas()
 }
@@ -183,7 +183,12 @@ function toggleMenu() {
 function toggleMemeEditor(elImg) {
     // console.log('hello toggleMemeEditor')
     document.body.classList.toggle('open-meme-editor')
-        // model:
+    document.querySelector('.gallery-main-container').classList.toggle('hide-gallery')
+        // elGallery.style.display = 'none'
+    if (window.innerWidth <= 740) {
+        document.querySelector('footer').classList.toggle('footer-opacity')
+    }
+    // model:
     updateMemePic(elImg)
         // dom:
     renderCanvas()
@@ -192,6 +197,10 @@ function toggleMemeEditor(elImg) {
 function hideMemeEditor() {
     // console.log('hello hideMemeEditor')
     document.body.classList.toggle('open-meme-editor')
+    document.querySelector('.gallery-main-container').classList.toggle('hide-gallery')
+    if (window.innerWidth <= 740) {
+        document.querySelector('footer').classList.toggle('footer-opacity')
+    }
 }
 
 
@@ -202,4 +211,15 @@ function downloadCanvas(elLink) { // bug with square
     const data = gElCanvas.toDataURL()
         // console.log('data', data);
     elLink.href = data
+}
+
+
+// ------------- CHANGE COLOR CONTORLERS BGC --- 
+
+function setColorButtonsBGC(color, marginColor) {
+    console.log('hello setColorButtonsBGC')
+    var elColorBTN = document.querySelector('.control-color')
+    var elBGCBTN = document.querySelector('.control-margin-c')
+    elColorBTN.style.background = color
+    elBGCBTN.style.background = marginColor
 }
